@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Agent</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="chat-container">
+    <header class="chat-header">Assistant</header>
+    <main id="messages" class="chat-messages"></main>
+    <form id="chat-form" class="chat-input">
+      <textarea id="message-input" placeholder="Xabaringizni yozing..." rows="1"></textarea>
+      <button type="submit">Jo'natish</button>
+    </form>
+  </div>
+
+  <script>
+    const messagesEl = document.getElementById('messages');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('message-input');
+
+    function appendMessage(role, text){
+      const el = document.createElement('div');
+      el.className = 'message ' + role;
+      el.innerHTML = `<div class="message-content">${text.replace(/\n/g,'<br>')}</div>`;
+      messagesEl.appendChild(el);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if(!text) return;
+      appendMessage('user', text);
+      input.value = '';
+      appendMessage('assistant', '...');
+
+      try {
+        const res = await fetch('/chat', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({message: text})
+        });
+        const data = await res.json();
+        // replace last assistant placeholder
+        const last = messagesEl.querySelector('.message.assistant:last-child .message-content');
+        if(last && last.textContent === '...') last.innerHTML = (data.reply || '');
+        else appendMessage('assistant', data.reply || '');
+      } catch(err) {
+        appendMessage('assistant', 'Xato: ' + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
