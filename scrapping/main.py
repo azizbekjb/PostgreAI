@@ -3,7 +3,7 @@ import json
 import requests
 from pathlib import Path
 from bs4 import BeautifulSoup
-
+from datetime import  datetime
 BASE_DIR = Path(__file__).resolve().parent
 
 def get_current_links():
@@ -36,7 +36,7 @@ def get_all_chapters_links():
     with open(BASE_DIR / "current.json", "r") as file:
         links = json.load(file)
 
-
+    all_links = []
     for data in links:
         # Har bobga kirish
         url = data["url"]
@@ -53,20 +53,30 @@ def get_all_chapters_links():
         for link in all_links_on_page_links:
             url = BASE_URL +  link.get("href")
             title = link.get_text(strip=False)
-            new_links.append({"url": url, "title": title})
+            data_to_append = {"url": url, "title": title}
 
+            if data_to_append not in all_links and "#" not in url:
+                new_links.append(data_to_append)
+                all_links.append(data_to_append)
         data["data"] = new_links
 
     with open(BASE_DIR / "chapters.json", "w") as file:
         json.dump(links, file, indent=4)
 
+    with open(BASE_DIR / "all_links.json", "w") as file:
+        json.dump(all_links, file, indent=4)
+
 
 
 if __name__ == "__main__":
     print("1. Asosiy sahifadan linklar olinmoqda...")
+    print(f"Boshlandi: {datetime.now()}")
     get_current_links()
-    print("1. Asosiy safidan linklar olindi.\n", "="*100)
+    print("1. Asosiy safidan linklar olindi.",)
+    print(f"Tugadi: {datetime.now()}\n", "="*100 )
 
-    print("2. Har bob ichindan linklar olinmoqda...")
+    print("2. Har bob ichidan linklar olinmoqda...")
+    print(f"Boshlandi: {datetime.now()}")
     get_all_chapters_links()
-    print("2. Har bob ichindan linklar olindi.\n", "="*100)
+    print("2. Har bob ichindan linklar olindi.")
+    print(f"Tugadi: {datetime.now()}\n", "="*100 )
