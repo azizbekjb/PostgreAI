@@ -6,14 +6,12 @@ def load_json_files(data_path: str):
     path = Path(data_path)
     
     # Barcha .json fayllarni qidiramiz
-    file_list = sorted(path.glob("*.json")) # <--- MANA SHU YERDA TARTIBLANADI
+    file_list = sorted(path.glob("*.json"))
     
     for file_path in file_list:
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-          
-
-            
+        
             for item in data:
                 doc_text = item.get("content", "")
                 metadata = {

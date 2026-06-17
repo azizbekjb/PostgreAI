@@ -37,7 +37,7 @@
 | Xususiyat | Tavsif |
 |---------|-------------|
 | 🔍 **Semantik Qidiruv** | Kalit so'zlar emas, balki ma'no bo'yicha qidiruv (HuggingFace Embeddings) |
-| ⚡ **Tezkor Javob** | Google Gemini 1.5 Flash modeli orqali yuqori tezlikda javob generatsiyasi |
+| ⚡ **Tezkor Javob** | Google Gemini 2.5 Flash Lite modeli orqali yuqori tezlikda javob generatsiyasi |
 | 📚 **Manba Ko'rsatish** | Har bir javob PostgreSQL rasmiy URL manzillari bilan ta'minlanadi |
 | 🐳 **Docker Ready** | Konteynerlashtirilgan va deployga tayyor holat |
 
