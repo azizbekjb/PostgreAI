@@ -8,7 +8,7 @@ from datetime import  datetime
 
 from pprint import pprint
 BASE_DIR = Path(__file__).resolve().parent
-DOCS_DIR = str(BASE_DIR).replace("scrapping", "docs/")
+DOCS_DIR = str(BASE_DIR).replace("scrapping", "data/")
 def get_content():
     # Sanagichni yuklab olish
     with open(BASE_DIR / 'counter.json', 'r') as file:
@@ -24,6 +24,10 @@ def get_content():
     contents = []
 
     for i in range(counter, len(all_links)):
+
+        if i == 470:
+            break
+        
         item = all_links[i]
         response = requests.get(item["url"])
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -62,8 +66,8 @@ def get_content():
 
 if __name__ == "__main__":
 
-    print(f"Web sahifalardan matnlarni olish boshlanmoqda |{datetime.now().strftime('%d/%m/%Y %H:%M:%S')}|")
+    print(f"3. Web sahifalardan matnlarni olish boshlanmoqda |{datetime.now().strftime('%d/%m/%Y %H:%M:%S')}|")
     print("="*100)
     get_content()
-    print(f"Web sahifalardan matnlarni olish yakunlandi |{datetime.now()}|")
+    print(f"3. Web sahifalardan matnlarni olish yakunlandi |{datetime.now()}|")
     print("=" * 100)
