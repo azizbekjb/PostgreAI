@@ -23,7 +23,7 @@ def load_json_files(data_path: str):
                 }
 
                 documents.append({"text": doc_text, "metadata": metadata})
-        break
+
             
     print(f"{len(documents)} ta hujjat yuklandi.")
     return documents

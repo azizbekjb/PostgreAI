@@ -17,13 +17,8 @@ def gemini_agent(user_query: str):
     )
 
     response = agent.invoke({"messages": [final_prompt]})
-    print("\nJavob:")
-    print(response["messages"][-1].content)
-    
-    print("\n--- Foydalanilgan manbalar ---")
-    for doc in docs:
-        print(f"- {doc.metadata.get('source')}")
-    
+
+    docs = [doc.metadata.get('source') for doc in docs]
     return {"answer": response["messages"][-1].content,
-            # "docs": docs
+            "docs": docs
     }

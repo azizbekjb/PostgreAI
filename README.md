@@ -39,7 +39,6 @@
 | 🔍 **Semantik Qidiruv** | Kalit so'zlar emas, balki ma'no bo'yicha qidiruv (HuggingFace Embeddings) |
 | ⚡ **Tezkor Javob** | Google Gemini 1.5 Flash modeli orqali yuqori tezlikda javob generatsiyasi |
 | 📚 **Manba Ko'rsatish** | Har bir javob PostgreSQL rasmiy URL manzillari bilan ta'minlanadi |
-| 🛡️ **Xavfsiz Ingestion** | RAM xotirasini tejovchi Generator-based ma'lumot yuklash tizimi |
 | 🐳 **Docker Ready** | Konteynerlashtirilgan va deployga tayyor holat |
 
 ---
@@ -62,7 +61,7 @@
 **Texnologiyalar:**
 - **Backend:** FastAPI
 - **Vektor DB:** ChromaDB
-- **LLM:** Google Gemini 1.5 Flash
+- **LLM:** Google Gemini 2.5 Flash Lite
 - **Embeddings:** HuggingFace `all-MiniLM-L6-v2`
 - **Orchestration:** LangChain
 
