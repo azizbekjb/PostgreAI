@@ -103,7 +103,7 @@ rich==15.0.0
 rich-toolkit==0.19.10
 rignore==0.7.6
 rpds-py==2026.5.1
-sentence-transformers=5.6.0
+sentence-transformers==5.6.0
 sentry-sdk==2.61.1
 shellingham==1.5.4
 six==1.17.0
